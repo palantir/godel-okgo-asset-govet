@@ -15,6 +15,7 @@
 package integration_test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/nmiyake/pkg/gofiles"
@@ -45,6 +46,15 @@ func TestGoVet(t *testing.T) {
 		"godel/config/check.yml": "",
 	}
 
+	prevVal := os.Getenv("GOMAXPROCS")
+	if prevVal != "" {
+		err = os.Setenv("GOMAXPROCS", prevVal)
+		require.NoError(t, err)
+	}
+
+	err = os.Setenv("GOMAXPROCS", "1")
+	require.NoError(t, err)
+
 	okgotester.RunAssetCheckTest(t,
 		okgoPluginLocator, okgoPluginResolver,
 		assetPath, "govet",
@@ -64,11 +74,24 @@ func Foo() {
 }
 `,
 					},
+					{
+						RelPath: "bar/bar.go",
+						Src: `package bar
+
+import "fmt"
+
+func Bar() {
+    num := 13
+	fmt.Printf("%s", num)
+}
+`,
+					},
 				},
 				ConfigFiles: configFiles,
 				WantError:   true,
 				WantOutput: `Running govet...
 ./foo.go:7: Printf format %s has arg num of wrong type int
+bar/bar.go:7: Printf format %s has arg num of wrong type int
 Finished govet
 `,
 			},
@@ -88,6 +111,18 @@ func Foo() {
 `,
 					},
 					{
+						RelPath: "bar/bar.go",
+						Src: `package bar
+
+import "fmt"
+
+func Bar() {
+    num := 13
+	fmt.Printf("%s", num)
+}
+`,
+					},
+					{
 						RelPath: "inner/bar",
 					},
 				},
@@ -96,6 +131,7 @@ func Foo() {
 				WantError:   true,
 				WantOutput: `Running govet...
 ../foo.go:7: Printf format %s has arg num of wrong type int
+../bar/bar.go:7: Printf format %s has arg num of wrong type int
 Finished govet
 `,
 			},
