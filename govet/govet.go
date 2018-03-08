@@ -27,7 +27,7 @@ import (
 )
 
 const (
-	TypeName okgo.CheckerType     = "govetCheck"
+	TypeName okgo.CheckerType     = "govet"
 	Priority okgo.CheckerPriority = 0
 )
 
