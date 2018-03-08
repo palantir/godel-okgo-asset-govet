@@ -19,7 +19,9 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"path"
 	"regexp"
+	"strings"
 
 	"github.com/palantir/okgo/checker"
 	"github.com/palantir/okgo/okgo"
@@ -59,13 +61,26 @@ func (c *govetCheck) Check(pkgPaths []string, projectDir string, stdout io.Write
 		okgo.WriteErrorAsIssue(errors.Wrapf(err, "failed to determine working directory"), stdout)
 		return
 	}
+
+	// go vet only accepts cleaned package paths: for example, it does not accept "./..". In order to get around this,
+	// clean all provided package paths. Copied so that input is not modified.
+	cleanedPaths := make([]string, len(pkgPaths))
+	for i, v := range pkgPaths {
+		cleanedPaths[i] = path.Clean(v)
+	}
+	pkgPaths = cleanedPaths
+
 	cmd := exec.Command("go", append(
 		[]string{"vet"},
 		pkgPaths...)...,
 	)
 	checker.RunCommandAndStreamOutput(cmd, func(line string) okgo.Issue {
-		// if govetCheck finds issue, it ends with the output "exit status 1", but we don't want to include it as part of the output
+		// if govet finds issue, it ends with the output "exit status 1", but we don't want to include it as part of the output
 		if line == "exit status 1" {
+			return okgo.Issue{}
+		}
+		// ignore output in the form of comments
+		if strings.HasPrefix(line, "#") {
 			return okgo.Issue{}
 		}
 		if match := lineRegexp.FindStringSubmatch(line); match != nil {
