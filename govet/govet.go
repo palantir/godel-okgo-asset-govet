@@ -19,7 +19,6 @@ import (
 	"io"
 	"os"
 	"os/exec"
-	"path"
 	"regexp"
 	"strings"
 
@@ -62,11 +61,14 @@ func (c *govetCheck) Check(pkgPaths []string, projectDir string, stdout io.Write
 		return
 	}
 
-	// go vet only accepts cleaned package paths: for example, it does not accept "./..". In order to get around this,
-	// clean all provided package paths. Copied so that input is not modified.
+	// go vet does not accept package paths that start with "./.." because they are not considered canonical paths. Deal
+	// with this specific case manually by converting paths that start with "./.." to start with "..".
 	cleanedPaths := make([]string, len(pkgPaths))
 	for i, v := range pkgPaths {
-		cleanedPaths[i] = path.Clean(v)
+		if strings.HasPrefix(v, "./..") {
+			v = strings.TrimPrefix(v, "./")
+		}
+		cleanedPaths[i] = v
 	}
 	pkgPaths = cleanedPaths
 
