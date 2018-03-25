@@ -20,11 +20,12 @@ import (
 	"github.com/palantir/okgo/checker"
 	"github.com/palantir/pkg/cobracli"
 
-	"github.com/palantir/godel-okgo-asset-govet/govet"
+	"github.com/palantir/godel-okgo-asset-govet/govet/config"
+	"github.com/palantir/godel-okgo-asset-govet/govet/creator"
 )
 
 func main() {
 	var debugFlagVal bool
-	rootCmd := checker.AssetRootCmd(govet.Creator(), "run go vet check")
+	rootCmd := checker.AssetRootCmd(creator.Govet(), config.UpgradeConfig, "run go vet check")
 	os.Exit(cobracli.ExecuteWithDefaultParamsWithVersion(rootCmd, &debugFlagVal, ""))
 }
