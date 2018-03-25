@@ -32,29 +32,19 @@ const (
 	Priority okgo.CheckerPriority = 0
 )
 
-func Creator() checker.Creator {
-	return checker.NewCreator(
-		TypeName,
-		Priority,
-		func(cfgYML []byte) (okgo.Checker, error) {
-			return &govetCheck{}, nil
-		},
-	)
-}
+type Checker struct{}
 
-type govetCheck struct{}
-
-func (c *govetCheck) Type() (okgo.CheckerType, error) {
+func (c *Checker) Type() (okgo.CheckerType, error) {
 	return TypeName, nil
 }
 
-func (c *govetCheck) Priority() (okgo.CheckerPriority, error) {
+func (c *Checker) Priority() (okgo.CheckerPriority, error) {
 	return Priority, nil
 }
 
 var lineRegexp = regexp.MustCompile(`(.+):(\d+): (.+)`)
 
-func (c *govetCheck) Check(pkgPaths []string, projectDir string, stdout io.Writer) {
+func (c *Checker) Check(pkgPaths []string, projectDir string, stdout io.Writer) {
 	wd, err := os.Getwd()
 	if err != nil {
 		okgo.WriteErrorAsIssue(errors.Wrapf(err, "failed to determine working directory"), stdout)
@@ -86,13 +76,13 @@ func (c *govetCheck) Check(pkgPaths []string, projectDir string, stdout io.Write
 			return okgo.Issue{}
 		}
 		if match := lineRegexp.FindStringSubmatch(line); match != nil {
-			// govetCheck does not include column info, so add it in manually
+			// Checker does not include column info, so add it in manually
 			line = fmt.Sprintf("%s:%s:0: %s", match[1], match[2], match[3])
 		}
 		return okgo.NewIssueFromLine(line, wd)
 	}, stdout)
 }
 
-func (c *govetCheck) RunCheckCmd(args []string, stdout io.Writer) {
+func (c *Checker) RunCheckCmd(args []string, stdout io.Writer) {
 	checker.AmalgomatedRunRawCheck(string(TypeName), args, stdout)
 }
