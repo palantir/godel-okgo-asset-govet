@@ -25,7 +25,6 @@ import (
 )
 
 func main() {
-	var debugFlagVal bool
 	rootCmd := checker.AssetRootCmd(creator.Govet(), config.UpgradeConfig, "run go vet check")
-	os.Exit(cobracli.ExecuteWithDefaultParamsWithVersion(rootCmd, &debugFlagVal, ""))
+	os.Exit(cobracli.ExecuteWithDefaultParams(rootCmd))
 }
