@@ -111,18 +111,6 @@
   revision = "6ef6fc2811e260af0641aae25a45881217b3cf3d"
 
 [[projects]]
-  name = "github.com/palantir/godel-okgo-asset-govet"
-  packages = [
-    "govet",
-    "govet/config",
-    "govet/config/internal/legacy",
-    "govet/config/internal/v0",
-    "govet/creator",
-  ]
-  revision = "0dcf1f0f574c56320e3f1c9289044acbf15908e9"
-  version = "v1.1.0"
-
-[[projects]]
   name = "github.com/palantir/okgo"
   packages = [
     "checker",
@@ -214,6 +202,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "02312e43478c219f8117a6d6b94f07ab8ae90a2a63df5f3017a3c72fd7fba54c"
+  inputs-digest = "e17f4e2418e1ac44e9fbe904724008658698269f2404518dc0d9322f8fd0fc1b"
   solver-name = "gps-cdcl"
   solver-version = 1
