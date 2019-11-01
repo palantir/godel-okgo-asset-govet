@@ -69,6 +69,10 @@ func TestCheck(t *testing.T) {
 				Name: "vet failures",
 				Specs: []gofiles.GoFileSpec{
 					{
+						RelPath: "go.mod",
+						Src:     "module foo",
+					},
+					{
 						RelPath: "foo.go",
 						Src: `package foo
 
@@ -96,8 +100,8 @@ func Bar() {
 				ConfigFiles: configFiles,
 				WantError:   true,
 				WantOutput: `Running govet...
-./foo.go:7: Printf format %s has arg num of wrong type int
-bar/bar.go:7: Printf format %s has arg num of wrong type int
+./foo.go:7:2: Printf format %s has arg num of wrong type int
+bar/bar.go:7:2: Printf format %s has arg num of wrong type int
 Finished govet
 Check(s) produced output: [govet]
 `,
@@ -105,6 +109,10 @@ Check(s) produced output: [govet]
 			{
 				Name: "vet failures from inner directory",
 				Specs: []gofiles.GoFileSpec{
+					{
+						RelPath: "go.mod",
+						Src:     "module foo",
+					},
 					{
 						RelPath: "foo.go",
 						Src: `package foo
@@ -137,8 +145,8 @@ func Bar() {
 				Wd:          "inner",
 				WantError:   true,
 				WantOutput: `Running govet...
-../foo.go:7: Printf format %s has arg num of wrong type int
-../bar/bar.go:7: Printf format %s has arg num of wrong type int
+../foo.go:7:2: Printf format %s has arg num of wrong type int
+../bar/bar.go:7:2: Printf format %s has arg num of wrong type int
 Finished govet
 Check(s) produced output: [govet]
 `,
