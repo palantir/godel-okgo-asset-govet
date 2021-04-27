@@ -17,11 +17,10 @@ package main
 import (
 	"os"
 
-	"github.com/palantir/okgo/checker"
-	"github.com/palantir/pkg/cobracli"
-
 	"github.com/palantir/godel-okgo-asset-govet/govet/config"
 	"github.com/palantir/godel-okgo-asset-govet/govet/creator"
+	"github.com/palantir/okgo/checker"
+	"github.com/palantir/pkg/cobracli"
 )
 
 func main() {
