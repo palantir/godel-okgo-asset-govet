@@ -100,8 +100,8 @@ func Bar() {
 				ConfigFiles: configFiles,
 				WantError:   true,
 				WantOutput: `Running govet...
-./foo.go:7:2: Printf format %s has arg num of wrong type int
-bar/bar.go:7:2: Printf format %s has arg num of wrong type int
+./foo.go:7:2: fmt.Printf format %s has arg num of wrong type int
+bar/bar.go:7:2: fmt.Printf format %s has arg num of wrong type int
 Finished govet
 Check(s) produced output: [govet]
 `,
@@ -145,8 +145,8 @@ func Bar() {
 				Wd:          "inner",
 				WantError:   true,
 				WantOutput: `Running govet...
-../foo.go:7:2: Printf format %s has arg num of wrong type int
-../bar/bar.go:7:2: Printf format %s has arg num of wrong type int
+../foo.go:7:2: fmt.Printf format %s has arg num of wrong type int
+../bar/bar.go:7:2: fmt.Printf format %s has arg num of wrong type int
 Finished govet
 Check(s) produced output: [govet]
 `,
