@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/nmiyake/pkg/gofiles v1.2.0
-	github.com/palantir/godel/v2 v2.60.0
+	github.com/palantir/godel/v2 v2.61.0
 	github.com/palantir/okgo v1.8.0
 	github.com/palantir/pkg/cobracli v1.1.0
 	github.com/pkg/errors v0.8.1
