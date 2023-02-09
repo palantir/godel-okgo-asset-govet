@@ -61,7 +61,7 @@ github.com/mattn/go-isatty
 # github.com/mattn/go-runewidth v0.0.4
 ## explicit
 github.com/mattn/go-runewidth
-# github.com/mholt/archiver v2.0.0+incompatible
+# github.com/mholt/archiver v2.1.0+incompatible
 ## explicit
 github.com/mholt/archiver
 # github.com/mholt/archiver/v3 v3.3.0
@@ -108,7 +108,7 @@ github.com/palantir/godel/framework/verifyorder
 github.com/palantir/godel/godelgetter
 github.com/palantir/godel/pkg/osarch
 github.com/palantir/godel/pkg/versionedconfig
-# github.com/palantir/godel/v2 v2.74.0
+# github.com/palantir/godel/v2 v2.75.0
 ## explicit; go 1.19
 github.com/palantir/godel/v2/framework/artifactresolver
 github.com/palantir/godel/v2/framework/builtintasks
