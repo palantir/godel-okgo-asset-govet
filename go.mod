@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/nmiyake/pkg/gofiles v1.2.0
-	github.com/palantir/godel/v2 v2.83.0
+	github.com/palantir/godel/v2 v2.84.0
 	github.com/palantir/okgo v1.8.0
 	github.com/palantir/pkg/cobracli v1.2.0
 	github.com/pkg/errors v0.8.1
