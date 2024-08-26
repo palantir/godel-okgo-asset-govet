@@ -1,0 +1,33 @@
+./godelw verify failed after updating godel plugins and assets
+
+Command that caused error:
+./godelw verify --skip-test --skip-check
+
+Output:
+Running format...
+Running mod...
+go: downloading github.com/palantir/amalgomate v1.38.0
+go: downloading golang.org/x/mod v0.15.0
+go: downloading github.com/pierrec/lz4 v2.0.5+incompatible
+go: downloading golang.org/x/sys v0.17.0
+go: github.com/palantir/godel-okgo-asset-govet imports
+	github.com/palantir/okgo/checker imports
+	github.com/palantir/amalgomate/amalgomated: github.com/palantir/amalgomate@v1.38.0: read "https://proxy.golang.org/github.com/palantir/amalgomate/@v/v1.38.0.zip": read tcp 172.26.64.45:45092->142.250.176.209:443: read: connection timed out
+go: github.com/palantir/godel-okgo-asset-govet/integration_test tested by
+	github.com/palantir/godel-okgo-asset-govet/integration_test.test imports
+	github.com/palantir/godel/v2/framework/pluginapitester imports
+	github.com/palantir/godel/v2/framework/builtintasks imports
+	github.com/palantir/godel/v2/framework/builtintasks/installupdate imports
+	github.com/mholt/archiver/v3 imports
+	github.com/pierrec/lz4: github.com/pierrec/lz4@v2.0.5+incompatible: read "https://proxy.golang.org/github.com/pierrec/lz4/@v/v2.0.5+incompatible.zip": read tcp 172.26.64.45:45092->142.250.176.209:443: read: connection timed out
+go: github.com/palantir/godel-okgo-asset-govet/integration_test tested by
+	github.com/palantir/godel-okgo-asset-govet/integration_test.test imports
+	github.com/palantir/godel/v2/framework/pluginapitester imports
+	github.com/palantir/godel/v2/framework/artifactresolver imports
+	github.com/palantir/godel/v2/godelgetter imports
+	github.com/cheggaaa/pb/v3 imports
+	github.com/mattn/go-isatty imports
+	golang.org/x/sys/unix: golang.org/x/sys@v0.17.0: read "https://proxy.golang.org/golang.org/x/sys/@v/v0.17.0.zip": read tcp 172.26.64.45:45092->142.250.176.209:443: read: connection timed out
+Running license...
+Failed tasks:
+	mod
