@@ -1,6 +1,6 @@
 module github.com/palantir/godel-okgo-asset-govet
 
-go 1.22
+go 1.23
 
 require (
 	github.com/nmiyake/pkg/gofiles v1.2.0
