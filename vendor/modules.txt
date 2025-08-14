@@ -5,8 +5,8 @@ github.com/VividCortex/ewma
 ## explicit; go 1.22
 github.com/andybalholm/brotli
 github.com/andybalholm/brotli/matchfinder
-# github.com/cheggaaa/pb/v3 v3.0.2
-## explicit
+# github.com/cheggaaa/pb/v3 v3.1.7
+## explicit; go 1.18
 github.com/cheggaaa/pb/v3
 github.com/cheggaaa/pb/v3/termutil
 # github.com/davecgh/go-spew v1.1.1
@@ -54,8 +54,8 @@ github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.20
 ## explicit; go 1.15
 github.com/mattn/go-isatty
-# github.com/mattn/go-runewidth v0.0.4
-## explicit
+# github.com/mattn/go-runewidth v0.0.16
+## explicit; go 1.9
 github.com/mattn/go-runewidth
 # github.com/mholt/archiver/v3 v3.5.1
 ## explicit; go 1.13
@@ -134,6 +134,9 @@ github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 ## explicit
 github.com/pmezard/go-difflib/difflib
+# github.com/rivo/uniseg v0.4.7
+## explicit; go 1.18
+github.com/rivo/uniseg
 # github.com/rogpeppe/go-internal v1.14.1
 ## explicit; go 1.23
 github.com/rogpeppe/go-internal/internal/syscall/windows
