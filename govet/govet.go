@@ -30,6 +30,7 @@ import (
 const (
 	TypeName okgo.CheckerType     = "govet"
 	Priority okgo.CheckerPriority = 0
+	MultiCPU okgo.CheckerMultiCPU = true
 )
 
 type Checker struct{}
@@ -40,6 +41,10 @@ func (c *Checker) Type() (okgo.CheckerType, error) {
 
 func (c *Checker) Priority() (okgo.CheckerPriority, error) {
 	return Priority, nil
+}
+
+func (c *Checker) MultiCPU() (okgo.CheckerMultiCPU, error) {
+	return MultiCPU, nil
 }
 
 var lineRegexp = regexp.MustCompile(`(.+):(\d+): (.+)`)
