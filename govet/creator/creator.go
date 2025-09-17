@@ -21,9 +21,10 @@ import (
 )
 
 func Govet() checker.Creator {
-	return checker.NewCreator(
+	return checker.NewCreatorWithMultiCPU(
 		govet.TypeName,
 		govet.Priority,
+		govet.MultiCPU,
 		func(cfgYML []byte) (okgo.Checker, error) {
 			return &govet.Checker{}, nil
 		},
